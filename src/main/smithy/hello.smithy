@@ -6,22 +6,18 @@ use alloy#simpleRestJson
 
 @simpleRestJson
 service WeatherService {
-    operations: [GetWeather]
+    operations: [Hello]
 }
 
-@http(method: "GET", uri: "/weather/{city}", code: 200)
-@readonly
-operation GetWeather {
-    input := {
-        @required
-        @httpLabel
-        city: String
-    }
-    output := {
-        @required
-        weather: String
-        @required
-        @httpResponseCode
-        code: Integer
-    }
+@http(method: "POST", uri: "/name", code: 200)
+operation Hello {
+    output: Greeting
+}
+
+structure Greeting {
+    @required
+    message: String
+    @httpResponseCode
+    @required
+    code: Integer
 }
