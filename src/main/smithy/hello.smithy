@@ -14,10 +14,14 @@ operation Hello {
     output: Greeting
 }
 
-structure Greeting {
+@mixin
+structure Extra {
+    @deprecated
+    @required
+    name: String
+}
+
+structure Greeting with [Extra] {
     @required
     message: String
-    @httpResponseCode
-    @required
-    code: Integer
 }
