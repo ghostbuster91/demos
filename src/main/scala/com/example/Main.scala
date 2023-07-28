@@ -4,3 +4,6 @@ package com.example
 def main(): Unit = println("Hello, world!")
 
 def otherMethod(prd: TypeDecl.Product) = ???
+
+def otherMethod(prd: Types.Product) = ???
+
