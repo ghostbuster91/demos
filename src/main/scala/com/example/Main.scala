@@ -1,9 +1,28 @@
 package com.example
 
-@main
-def main(): Unit = println("Hello, world!")
+case class Baz() {
 
-def otherMethod(prd: TypeDecl.Product) = ???
+  def methodA(
+    doSth: String => Boolean
+  ): Bazzes = ???
 
-def otherMethod(prd: Types.Product) = ???
+}
 
+case class A(foo: Bazzes)
+case class B(foo: Set[Baz])
+
+object Main {
+
+  def here(baz: Baz) = A(
+    foo = baz.methodA(_.isEmpty())
+  )
+
+  def here2(baz: Baz) = B(
+    foo = baz.methodA(_.isEmpty())
+  )
+
+  def here3(baz: Baz) = A(
+    baz.methodA(_.isEmpty())
+  )
+
+}
