@@ -1,4 +1,4 @@
 package hello;
 
-public record BRecord(SRecord data) {
+public record BRecord(SRecord data, Regular r) {
 }
