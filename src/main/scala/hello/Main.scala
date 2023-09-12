@@ -2,5 +2,5 @@ package hello
 
 object Main {
 
-  println(new ScalaRecord(new BRecord(new SRecord(""))))
+  println(new ScalaRecord(new BRecord(new SRecord("")), new Regular()))
 }
