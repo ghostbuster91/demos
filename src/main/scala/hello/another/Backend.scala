@@ -1,6 +1,9 @@
 package hello.another
 
-trait Backend {
-  def get(key: String): List[String]
+trait Backend[F[_]] {
+
+  def get(key: String): F[String]
 
 }
+
+object Backend {}
