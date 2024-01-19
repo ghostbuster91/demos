@@ -1,5 +1,5 @@
 //> using lib "org.typelevel::cats-core:2.10.0"
-//> using lib "org.typelevel::kittens:3.1.0"
+//> using lib "org.typelevel::kittens:3.2.0"
 
 import cats.Eq
 import cats.Show
