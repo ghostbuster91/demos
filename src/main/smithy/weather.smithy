@@ -21,11 +21,7 @@ operation HeadWeather {
         @httpLabel
         cityId: CityId
     }
-    output := {
-        @required
-        @httpResponseCode
-        statusCode: Integer
-    }
+    errors: [MyError]
 }
 
 @http(method: "GET", uri: "/cities/{cityId}/weather")
@@ -44,6 +40,7 @@ operation GetWeather {
         @httpResponseCode
         statusCode: Integer
     }
+    errors: [MyError]
 }
 
 structure Weather {
@@ -67,3 +64,11 @@ operation CreateCity {
 }
 
 string CityId
+
+@httpError(404)
+@error("client")
+structure MyError {
+    @httpHeader("x-details")
+    @required
+    details: String
+}

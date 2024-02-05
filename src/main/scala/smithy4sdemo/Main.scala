@@ -8,11 +8,12 @@ import hello.CreateCityOutput
 import hello.GetWeatherOutput
 import hello.WeatherService
 import hello.Weather
+import hello.MyError
 import org.http4s.HttpRoutes
 import org.http4s.ember.client.EmberClientBuilder
 import org.http4s.ember.server.EmberServerBuilder
 import smithy4s.http4s.SimpleRestJsonBuilder
-import hello.HeadWeatherOutput
+// import hello.HeadWeatherOutput
 
 object ServerMain extends IOApp.Simple {
 
@@ -23,7 +24,7 @@ object ServerMain extends IOApp.Simple {
         cityId: CityId
       ): IO[GetWeatherOutput] =
         IO.println(s"getWeather($cityId)") *>
-          IO.pure(GetWeatherOutput(Weather("Good weather", Some(40)), 201))
+          IO.raiseError(MyError("boom"))
 
       def createCity(
         city: String,
@@ -32,7 +33,7 @@ object ServerMain extends IOApp.Simple {
         IO.println(s"createCity($city, $country)") *>
           IO.pure(CreateCityOutput(CityId("123")))
 
-      def headWeather(cityId: CityId) : IO[HeadWeatherOutput] = IO(HeadWeatherOutput(404))
+      def headWeather(cityId: CityId) : IO[Unit] = IO.raiseError(MyError("boom"))
     }
 
   def run: IO[Unit] =
@@ -57,6 +58,7 @@ object ClientMain extends IOApp.Simple {
       client
         .headWeather(CityId("a"))
         .flatMap(IO.println(_))
+        .handleErrorWith (IO.println(_))
     }
   }
 
