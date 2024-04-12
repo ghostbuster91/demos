@@ -13,9 +13,8 @@ service WeatherService {
 @readonly
 operation GetWeather {
     input := {
-        @httpPayload
         @required
-        map: StringMap
+        map: StringList
     }
     output := {
         @required
@@ -23,9 +22,10 @@ operation GetWeather {
     }
 }
 
-@sparse
-map StringMap {
-    key: String
-    @length(min: 2)
-    value: String
+@length(min: 2)
+string Email
+
+list StringList {
+    @length(min:2)
+    member: String
 }

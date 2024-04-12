@@ -11,7 +11,7 @@ object Main extends IOApp.Simple {
   def run = SimpleRestJsonBuilder
     .routes(
       new WeatherService[IO] {
-        def getWeather(map: Map[String, Option[String]]): IO[GetWeatherOutput] =
+        def getWeather(map: List[String]): IO[GetWeatherOutput] =
           IO.pure(GetWeatherOutput(s"bad weather in $map"))
       }
     )
