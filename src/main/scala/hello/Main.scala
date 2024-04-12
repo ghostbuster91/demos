@@ -7,11 +7,12 @@ import cats.effect.IO
 import cats.effect.IOApp
 
 object Main extends IOApp.Simple {
+
   def run = SimpleRestJsonBuilder
     .routes(
       new WeatherService[IO] {
-        def getWeather(city: String): IO[GetWeatherOutput] =
-          IO.pure(GetWeatherOutput("bad weather in " + city))
+        def getWeather(map: Map[String, Option[String]]): IO[GetWeatherOutput] =
+          IO.pure(GetWeatherOutput(s"bad weather in $map"))
       }
     )
     .resource

@@ -9,16 +9,23 @@ service WeatherService {
     operations: [GetWeather]
 }
 
-@http(method: "GET", uri: "/weather/{city}")
+@http(method: "POST", uri: "/weather")
 @readonly
 operation GetWeather {
     input := {
+        @httpPayload
         @required
-        @httpLabel
-        city: String
+        map: StringMap
     }
     output := {
         @required
         weather: String
     }
+}
+
+@sparse
+map StringMap {
+    key: String
+    @length(min: 2)
+    value: String
 }
