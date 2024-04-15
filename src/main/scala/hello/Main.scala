@@ -12,7 +12,7 @@ object Main extends IOApp.Simple {
     .routes(
       new WeatherService[IO] {
         def getWeather(map: List[String]): IO[GetWeatherOutput] =
-          IO.pure(GetWeatherOutput(s"bad weather in $map"))
+          IO.pure(GetWeatherOutput(map.size.toString()))
       }
     )
     .resource

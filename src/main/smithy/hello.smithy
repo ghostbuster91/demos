@@ -14,7 +14,8 @@ service WeatherService {
 operation GetWeather {
     input := {
         @required
-        map: StringList
+        @httpHeader("X-Foo")
+        id: ListOfStrings
     }
     output := {
         @required
@@ -25,7 +26,6 @@ operation GetWeather {
 @length(min: 2)
 string Email
 
-list StringList {
-    @length(min:2)
+list ListOfStrings {
     member: String
 }
