@@ -1,12 +1,19 @@
 val moduleA = project
   .in(file("moduleA"))
   .settings(
-    scalaVersion := "2.13.11"
+    scalaVersion := "3.3.3"
   )
 
 val moduleB = project
   .in(file("moduleB"))
-  .dependsOn(moduleA)
   .settings(
-    scalaVersion := "2.13.11"
+    scalaVersion := "3.3.3",
+    scalacOptions ++= Seq(
+      "-Xfatal-warnings"
+    ),
+    javacOptions ++= Seq(
+      "-Xlint:unchecked"
+    )
   )
+
+val root = project.in(file(".")).aggregate(moduleA, moduleB)

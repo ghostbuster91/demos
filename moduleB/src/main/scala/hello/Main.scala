@@ -1,10 +1,8 @@
 package hello
 
-object Main {
+object BMain {
 
   def main(args: Array[String]) = {
     println(args)
-    val a = Person("kasper")
-    println(a)
   }
 }
