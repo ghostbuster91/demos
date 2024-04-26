@@ -4,9 +4,16 @@ import java.util.List;
 
 public class Service {
 
-	void create(List<Object> args) {
-		var second = (java.util.Optional<String>) args.get(2);
+    public static String hello(){
+        return "hello";
+    }
 
-		System.out.println(second);
-	}
+    public String nonStaticHello(){
+        return "nonStatic";
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(Service.nonStaticHello()());
+    }
 }
