@@ -1,12 +1,14 @@
 package com.example;
 
+import hello.*;
+
 import java.util.List;
 
 public class Service {
 
-	void create(List<Object> args) {
-		var second = (java.util.Optional<String>) args.get(2);
-
-		System.out.println(second);
+	void create(List<Object> args, Foo foo) {
+		System.out.println(foo.bar());
+		System.out.println(Foo$.MODULE$.baz());;
+        System.out.println(Foo.baz());;
 	}
 }
