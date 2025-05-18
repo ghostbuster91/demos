@@ -1,0 +1,26 @@
+import coursier.core.Repository
+import coursier.maven.MavenRepository
+import mill._
+import mill.define.Sources
+import mill.scalalib._
+import scalalib._
+
+trait CommonScalaModule extends ScalaModule  {
+  def scalaVersion = "2.13.16"
+}
+
+
+object example extends CommonScalaModule {
+
+  object test extends ScalaTests with TestModule.Munit{
+    // def ivyDeps = Agg(
+    //   ivy"com.disneystreaming::weaver-cats:0.8.4"
+    // )
+    def ivyDeps = Agg(ivy"org.scalameta::munit::1.0.4", ivy"com.lihaoyi::mill-testkit:0.12.11",
+    ivy"com.lihaoyi::mill-scalalib:0.12.11" ,
+    ivy"com.lihaoyi::mill-main:0.12.11",
+    ivy"com.lihaoyi::mill-main-api:0.12.11" 
+      )
+    // def testFramework = "utest.runner.Framework"
+  }
+}
