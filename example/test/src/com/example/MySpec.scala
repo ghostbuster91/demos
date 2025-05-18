@@ -59,8 +59,12 @@ class HelloTests extends munit.FunSuite {
 
     val barResource = resourcePath / "bar"
     UnitTester(bar, barResource).scoped { barEval =>
+      // uncomending below line fixes the issue
+      // println(barEval(bar.transitiveIvyDeps))
+
       val barCompile = barEval(bar.compile)
       println(barCompile)
+
       assertEquals(
         barCompile.isRight,
         true,
